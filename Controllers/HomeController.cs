@@ -12,3 +12,4 @@ namespace AlhalabiShopping.Controllers
         }
     }
 }
+//minor UI enhancements 
