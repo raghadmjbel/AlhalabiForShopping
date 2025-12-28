@@ -1,0 +1,56 @@
+@{
+    ViewData["Title"] = "نجاح الطلب";
+}
+
+<div class="container text-center" style="margin-top: 100px;">
+    <div class="success-checkmark">
+        <div class="check-icon">
+            <span class="icon-line line-tip"></span>
+            <span class="icon-line line-long"></span>
+            <div class="icon-circle"></div>
+            <div class="icon-fix"></div>
+        </div>
+    </div>
+    
+    <h2 class="text-success mt-4">تم تسجيل طلبك بنجاح في مول الحلبي!</h2>
+    <p class="lead">سيتم التواصل معك قريباً لتأكيد التوصيل.</p>
+    
+    <div class="mt-5">
+        <a href="/" class="btn btn-warning btn-lg">العودة للتسوق</a>
+    </div>
+</div>
+
+<style>
+    /* هنا حل مشكلة الـ keyframes بوضعها داخل وسم style */
+    .success-checkmark {
+        width: 80px;
+        height: 115px;
+        margin: 0 auto;
+    }
+
+    @@keyframes rotate-circle {
+        0% { transform: rotate(-45deg); }
+        5% { transform: rotate(-45deg); }
+        12% { transform: rotate(-40deg); }
+        70% { transform: rotate(290deg); }
+        100% { transform: rotate(290deg); }
+    }
+
+    /* ملاحظة لغيث: استخدمنا @@ مرتين لكي نهرب من محرك Razor */
+    @@keyframes icon-line-tip {
+        0% { width: 0; left: 1px; top: 19px; }
+        54% { width: 0; left: 1px; top: 19px; }
+        70% { width: 50px; left: -8px; top: 37px; }
+        84% { width: 17px; left: 21px; top: 48px; }
+        100% { width: 25px; left: 14px; top: 45px; }
+    }
+
+    .check-icon {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        border-radius: 50%;
+        box-sizing: content-box;
+        border: 4px solid #4CAF50;
+    }
+</style>

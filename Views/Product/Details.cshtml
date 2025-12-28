@@ -1,0 +1,23 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.ImagePath" class="img-fluid rounded shadow border">
+        </div>
+        <div class="col-md-6">
+            <h1 class="display-4">@Model.ProductName</h1>
+            <p class="h3 text-success">السعر: @Model.Price.ToString("C")</p>
+            <p class="mt-4">@Model.Description</p>
+            
+            <div class="bg-dark text-white p-4 rounded mt-4" style="border-right: 5px solid #d4af37;">
+                <h5><i class="fas fa-truck"></i> معلومات التوصيل</h5>
+                <p class="small">توصيل منزلي خلال 48 ساعة كحد أقصى.</p>
+                <h5><i class="fas fa-wallet"></i> طرق الدفع المتاحة</h5>
+                <ul>
+                    <li>كاش عند الاستلام</li>
+                    <li>تحويل عبر شركة الهرم / الفؤاد</li>
+                </ul>
+                <button class="btn btn-warning btn-lg w-100 mt-3">إضافة إلى السلة</button>
+            </div>
+        </div>
+    </div>
+</div>

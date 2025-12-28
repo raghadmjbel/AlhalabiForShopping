@@ -1,0 +1,102 @@
+@model List<AlhalabiShopping.Models.Product>
+
+<div class="container mt-5" dir="rtl">
+    <h2 class="text-gold mb-4"><i class="fas fa-shopping-cart"></i> سلة مشتريات مول الحلبي</h2>
+    
+    @if (Model.Count == 0)
+    {
+        <div class="alert alert-dark text-white border-gold text-center py-5">
+            <i class="fas fa-shopping-basket fa-3x mb-3 text-gold"></i>
+            <p class="fs-4">سلتك فارغة حالياً.. اذهب وتسوق!</p>
+            <a href="/Product/Index" class="btn btn-gold mt-3">العودة للمتجر</a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-dark border-gold mt-4 text-center align-middle">
+                <thead>
+                    <tr class="text-gold">
+                        <th>المنتج</th>
+                        <th>السعر</th>
+                        <th>إجراء</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold">@item.ProductName</td>
+                            <td class="text-gold">@item.Price.ToString("C")</td>
+                            <td>
+                                <form asp-action="Remove" method="post">
+                                    <input type="hidden" name="productId" value="@item.ProductID" />
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                        <i class="fas fa-trash-alt"></i> حذف
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card bg-dark border-gold p-4 text-white shadow-lg mt-4">
+            <div class="row">
+                <div class="col-md-6 border-start border-gold">
+                    <h4 class="mb-3">ملخص الحساب</h4>
+                    <div class="d-flex justify-content-between">
+                        <span>المجموع الأصلي:</span>
+                        <span>@ViewBag.OriginalTotal.ToString("C")</span>
+                    </div>
+                    
+                    @if (ViewBag.DiscountMessage != null)
+                    {
+                        <div class="d-flex justify-content-between text-success fw-bold mt-2">
+                            <span>الخصم:</span>
+                            <span>10% -</span>
+                        </div>
+                        <small class="text-success">@ViewBag.DiscountMessage</small>
+                    }
+                    <hr class="bg-gold">
+                    <div class="d-flex justify-content-between text-gold">
+                        <h3 class="fw-bold">المبلغ المطلوب:</h3>
+                        <h3 class="fw-bold">@ViewBag.Total.ToString("C")</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-4 mt-md-0">
+                    <h4 class="mb-3 text-gold">معلومات التوصيل والدفع</h4>
+                    <form asp-action="Checkout" method="post">
+                        <div class="mb-3">
+                            <input type="text" name="address" class="form-control bg-secondary text-white border-0" placeholder="عنوان التوصيل بالتفصيل (المنطقة، الشارع)" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="phone" class="form-control bg-secondary text-white border-0" placeholder="رقم هاتف التواصل" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small text-gold mb-1">طريقة الدفع</label>
+                            <select name="paymentMethod" class="form-control bg-secondary text-white border-0">
+                            <option value="Cash">دفع عند الاستلام</option>
+                                <option value="Online">بطاقة ائتمان (دفع وهمي)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-gold btn-lg w-100 fw-bold">
+                            <i class="fas fa-check-circle"></i> تأكيد الطلب والدفع
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .text-gold { color: #e0b354 !important; }
+    .border-gold { border: 1px solid #e0b354 !important; }
+    .btn-gold { background-color: #e0b354; color: black; border: none; transition: 0.3s; }
+    .btn-gold:hover { background-color: #c99a3c; color: white; transform: scale(1.02); }
+    .bg-dark { background-color: #1a1a1a !important; }
+    .form-control::placeholder { color: #ccc; }
+</style>

@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "نجاح العملية";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5 text-center" dir="rtl">
+    <div class="card bg-dark border-gold shadow-lg p-5" style="border-radius: 20px;">
+        <div class="mb-4">
+            <i class="fas fa-check-circle fa-5x text-success"></i>
+        </div>
+        <h1 class="text-gold mb-3">تم تأكيد طلبك بنجاح!</h1>
+        <p class="text-white fs-5">شكراً لتسوقك من مول الحلبي. طلبك الآن قيد التنفيذ.</p>
+        
+        <div class="alert alert-outline-gold bg-transparent border-gold text-gold d-inline-block px-5">
+            رقم الطلب الخاص بك هو: <strong>#@ViewBag.OrderId</strong>
+        </div>
+
+        <div class="mt-4">
+            <a href="/" class="btn btn-gold btn-lg px-5 fw-bold">العودة للمتجر</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-gold { color: #e0b354 !important; }
+    .border-gold { border: 1px solid #e0b354 !important; }
+    .btn-gold { background-color: #e0b354; color: black; border: none; }
+    .btn-gold:hover { background-color: #c99a3c; transform: translateY(-2px); transition: 0.3s; }
+</style>

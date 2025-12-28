@@ -1,0 +1,117 @@
+@model AlhalabiShopping.Models.AdminDashboardViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "لوحة التحكم - مول الحلبي";
+}
+
+<div class="container-fluid mt-4" dir="rtl">
+    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-gold pb-2">
+        <h2 class="text-gold"><i class="fas fa-tachometer-alt"></i> لوحة التحكم - مول الحلبي الذكي</h2>
+        <div class="text-white-50">تاريخ اليوم: @DateTime.Now.ToShortDateString()</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card bg-dark border-gold text-white mb-4 shadow-lg stat-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-boxes fa-2x text-gold mb-2"></i>
+                    <h6 class="text-white-50">إجمالي المنتجات</h6>
+                    <h2 class="text-gold fw-bold">@Model.TotalProducts</h2>
+                    <a href="/Admin/Index" class="btn btn-sm btn-outline-gold mt-2">إدارة المنتجات</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-dark border-gold text-white mb-4 shadow-lg stat-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-shopping-cart fa-2x text-gold mb-2"></i>
+                    <h6 class="text-white-50">إجمالي الطلبات</h6>
+                    <h2 class="text-gold fw-bold">@Model.TotalOrders</h2>
+                    <a href="/Admin/Manageorder" class="btn btn-sm btn-outline-gold mt-2">عرض الطلبات</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-dark border-gold text-white mb-4 shadow-lg stat-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-2x text-gold mb-2"></i>
+                    <h6 class="text-white-50">عدد المستخدمين</h6>
+                    <h2 class="text-gold fw-bold">@Model.TotalUsers</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-dark border-gold text-white mb-4 shadow-lg stat-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-dollar-sign fa-2x text-gold mb-2"></i>
+                    <h6 class="text-white-50">إجمالي المبيعات</h6>
+                    <h2 class="text-gold fw-bold">@Model.TotalRevenue.ToString("F2") $</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="card bg-dark border-gold text-white shadow">
+                <div class="card-header border-gold d-flex justify-content-between align-items-center">
+                    <h5 class="text-gold mb-0"><i class="fas fa-history"></i> أحدث الطلبات</h5>
+                    <a href="/Admin/Manageorder" class="text-gold text-decoration-none small">عرض الكل</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover mb-0">
+                            <thead class="bg-gold text-dark">
+                                <tr>
+                                    <th>رقم الطلب</th>
+                                    <th>التاريخ</th>
+                                    <th>المبلغ</th>
+                                    <th>الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var order in Model.LatestOrders) {
+                                    <tr>
+                                        <td>#@order.OrderID</td>
+                                        <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                                        <td class="text-gold">@order.TotalAmount.ToString("F2") $</td>
+                                        <td><span class="badge bg-success">تم الدفع</span></td>
+                                    </tr>
+                                }
+                                @if(!Model.LatestOrders.Any()){
+                                    <tr><td colspan="4" class="text-center p-3 text-white-50">لا يوجد طلبات حالياً</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-dark border-gold text-white shadow">
+                <div class="card-header border-gold"><h5 class="text-gold mb-0">روابط سريعة</h5></div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="/Admin/Creatproduct" class="btn btn-gold fw-bold">إضافة منتج جديد</a>
+                        <a href="/Admin/Index" class="btn btn-outline-gold">تعديل/حذف المنتجات</a>
+                        <a href="/" class="btn btn-outline-light">عرض المتجر</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-gold { color: #e0b354 !important; }
+    .border-gold { border: 1px solid #e0b354 !important; }
+    .btn-gold { background-color: #e0b354; color: black; transition: 0.3s; }
+    .btn-gold:hover { background-color: #c99a3c; transform: translateY(-2px); }
+    .btn-outline-gold { border: 1px solid #e0b354; color: #e0b354; }
+    .btn-outline-gold:hover { background-color: #e0b354; color: black; }
+    .stat-card { transition: 0.3s; border-radius: 15px; }
+    .stat-card:hover { transform: scale(1.03); }
+    .bg-gold { background-color: #e0b354 !important; }
+</style>

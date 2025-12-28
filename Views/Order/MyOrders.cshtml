@@ -1,0 +1,25 @@
+@model IEnumerable<AlhalabiShopping.Models.Order>
+
+<div class="container mt-4">
+    <h2 class="mb-4">طلباتي السابقة</h2>
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center">لم تقم بإجراء أي طلبات بعد.</div>
+    }
+    else
+    {
+        <div class="list-group">
+            @foreach (var order in Model)
+            {
+                <div class="list-group-item list-group-item-action flex-column align-items-start mb-3 shadow-sm">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">طلب رقم #@order.OrderID</h5>
+                        <small>@order.OrderDate.ToString("yyyy-MM-dd")</small>
+                    </div>
+                    <p class="mb-1">إجمالي المبلغ: <span class="text-success">@order.TotalAmount $</span></p>
+                    <small class="text-muted">حالة التوصيل: قيد المعالجة ذكياً</small>
+                </div>
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,67 @@
+@model AlhalabiShopping.Models.Product
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "تعديل المنتج";
+}
+
+<div class="container mt-5" dir="rtl">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            @if (Model == null)
+            {
+                <div class="alert alert-danger text-center">خطأ: لم يتم العثور على بيانات المنتج.</div>
+            }
+            else
+            {
+                <div class="card bg-dark text-white border-gold shadow-lg" style="border-radius: 20px;">
+                    <div class="card-header border-gold text-center py-3">
+                        <h3 class="text-gold mb-0"><i class="fas fa-edit"></i> تعديل بيانات المنتج</h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <form action="/Admin/EditProduct" method="post">
+                            <input type="hidden" name="ProductID" value="@Model.ProductID" />
+
+                            <div class="mb-3">
+                                <label class="form-label text-gold">اسم المنتج</label>
+                                <input name="ProductName" value="@Model.ProductName" class="form-control bg-transparent text-white border-gold" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-gold">السعر ($)</label>
+                                <input name="Price" type="number" step="0.01" value="@Model.Price.ToString("F2")" class="form-control bg-transparent text-white border-gold" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-gold">القسم</label>
+                                <select name="Category" class="form-select bg-transparent text-white border-gold">
+                                    <option value="Bags" selected="@(Model.Category?.ToString() == "Bags")">حقائب</option>
+                                    <option value="Watches" selected="@(Model.Category?.ToString() == "Watches")">ساعات</option>
+                                    <option value="Perfumes" selected="@(Model.Category?.ToString() == "Perfumes")">عطور</option>
+                                    <option value="Makeup" selected="@(Model.Category?.ToString() == "Makeup")">مكياج</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-gold">رابط الصورة (URL)</label>
+                                <input name="ImagePath" value="@Model.ImagePath" class="form-control bg-transparent text-white border-gold">
+                            </div>
+
+                            <div class="d-grid gap-2 mt-4">
+                                <button type="submit" class="btn btn-gold btn-lg fw-bold shadow">حفظ التغييرات</button>
+                                <a href="/Admin/Index" class="btn btn-outline-light">إلغاء والعودة للجدول</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .border-gold { border: 1px solid #e0b354 !important; }
+    .text-gold { color: #e0b354 !important; }
+    .btn-gold { background-color: #e0b354; color: black; border: none; }
+    .btn-gold:hover { background-color: #c99a3c; color: white; transition: 0.3s; }
+</style>

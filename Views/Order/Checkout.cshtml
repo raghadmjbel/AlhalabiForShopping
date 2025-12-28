@@ -1,0 +1,21 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 shadow p-4 border-top border-warning">
+            <h4 class="mb-4">تأكيد طلب الشراء</h4>
+            <form asp-controller="Order" asp-action="PlaceOrder" method="post">
+                <div class="mb-3">
+                    <label>عنوان التوصيل بالتفصيل</label>
+                    <textarea name="address" class="form-control" placeholder="المدينة، الشارع، البناية..." required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label>رقم الهاتف</label>
+                    <input type="text" name="phone" class="form-control" required />
+                </div>
+                <div class="alert alert-info">
+                    سيتم الدفع عبر نظامنا الوهمي الآمن (Dummy Payment System)
+                </div>
+                <button type="submit" class="btn btn-warning btn-lg w-100">تأكيد ودفع</button>
+            </form>
+        </div>
+    </div>
+</div>

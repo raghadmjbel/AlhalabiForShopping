@@ -1,0 +1,64 @@
+:root {
+    --gold: #e0b354;
+    --dark-bg: #1a1a1a;
+    --light-gray: #f4f4f4;
+}
+
+body {
+    background-color: var(--light-gray);
+    color: #333;
+}
+
+/* تنسيق الكروت (المنتجات والأقسام) */
+.card {
+    border: none;
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* تنسيق الأزرار */
+.btn-warning {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: white;
+    font-weight: bold;
+}
+
+.btn-warning:hover {
+    background-color: #c99a3d;
+    border-color: #c99a3d;
+}
+
+/* تنسيق الـ Navbar */
+.navbar {
+    background-color: var(--dark-bg) !important;
+}
+
+.navbar-brand {
+    color: var(--gold) !important;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+}
+
+/* تأثيرات الـ AI Badge */
+.ai-badge {
+    background: linear-gradient(45deg, #28a745, #218838);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* تنسيق السلة */
+.cart-summary {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border-right: 5px solid var(--gold);
+}

@@ -1,0 +1,61 @@
+@model AlhalabiShopping.Models.User
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "إنشاء حساب جديد";
+}
+
+<div class="container mt-5" dir="rtl">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card bg-dark border-gold shadow-lg" style="border-radius: 15px;">
+                <div class="card-header border-gold text-center py-4">
+                    <h2 class="text-gold fw-bold mb-0"><i class="fas fa-user-plus"></i> انضم لمول الحلبي</h2>
+                    <p class="text-white-50 mt-2">أنشئ حسابك الخاص لتبدأ التسوق</p>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Register" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label class="text-white mb-2"><i class="fas fa-user text-gold me-1"></i> الاسم الكامل</label>
+                            <input asp-for="FullName" class="form-control bg-secondary text-white border-0 py-2" placeholder="أدخل اسمك الثلاثي" required />
+                            <span asp-validation-for="FullName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="text-white mb-2"><i class="fas fa-envelope text-gold me-1"></i> البريد الإلكتروني</label>
+                            <input asp-for="Email" type="email" class="form-control bg-secondary text-white border-0 py-2" placeholder="example@mail.com" required />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="text-white mb-2"><i class="fas fa-lock text-gold me-1"></i> كلمة المرور</label>
+                            <input asp-for="Password" type="password" class="form-control bg-secondary text-white border-0 py-2" placeholder="****" required />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="text-white mb-2"><i class="fas fa-map-marker-alt text-gold me-1"></i> عنوانك الحالي</label>
+                            <input asp-for="Address" class="form-control bg-secondary text-white border-0 py-2" placeholder="المدينة، الحي، الشارع" />
+                            <span asp-validation-for="Address" class="text-danger small"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-gold btn-lg w-100 fw-bold shadow-sm py-2">إنشاء الحساب الآن</button>
+                    </form>
+                </div>
+                <div class="card-footer border-gold text-center py-3">
+                    <span class="text-white-50 small">لديك حساب بالفعل؟</span>
+                    <a href="/Account/Login" class="text-gold fw-bold text-decoration-none ms-1 small">تسجيل دخول</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .border-gold { border: 1px solid #e0b354 !important; }
+    .text-gold { color: #e0b354 !important; }
+    .btn-gold { background-color: #e0b354; color: black; border: none; }
+    .btn-gold:hover { background-color: #c99a3c; color: white; transform: scale(1.02); transition: 0.3s; }
+    .form-control:focus { background-color: #495057 !important; border: 1px solid #e0b354 !important; box-shadow: none; color: white; }
+</style>

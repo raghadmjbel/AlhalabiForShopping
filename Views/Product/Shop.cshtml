@@ -1,0 +1,20 @@
+@model IEnumerable<AlhalabiShopping.Models.Product>
+
+<div class="container mt-5">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="@item.ImagePath" class="card-img-top" style="height:200px; object-fit:cover;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@item.ProductName</h5>
+                        <p class="text-gold fw-bold">@item.Price.ToString("C")</p>
+                        @* التعديل هنا: ProductID *@
+                        <a href="/Product/Details/@item.ProductID" class="btn btn-warning w-100">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

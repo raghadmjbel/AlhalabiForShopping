@@ -1,0 +1,18 @@
+﻿@model IEnumerable<AlhalabiShopping.Models.Category>
+<div class="container mt-5 text-center" dir="rtl">
+    <h1 class="text-gold mb-4">أقسام مول الحلبي</h1>
+    <div class="row">
+        @foreach (var cat in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card bg-dark border-gold h-100 shadow-lg">
+                    <img src="@cat.ImagePath" class="card-img-top" style="height:150px; object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="card-title text-white">@cat.CategoryName</h5>
+                        <a href="/Product/Category/@cat.CategoryID" class="btn btn-gold w-100">دخول القسم</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
